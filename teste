@@ -1,0 +1,55 @@
+def exibir_menu():
+    """Exibe o menu de opções para o usuário."""
+    print("\nMenu:")
+    print("1. Cadastrar usuário")
+    print("2. Exibir usuários")
+    print("3. Buscar usuário")
+    print("4. Sair")
+
+def cadastrar_usuario(usuarios):
+    """Cadastra um novo usuário."""
+    nome = input("Digite o nome do usuário: ")
+    email = input("Digite o email do usuário: ")
+    if email in usuarios:
+        print("Erro: Esse email já está cadastrado.")
+    else:
+        usuarios[email] = nome
+        print("Usuário cadastrado com sucesso.")
+
+def exibir_usuarios(usuarios):
+    """Exibe a lista de todos os usuários cadastrados."""
+    if usuarios:
+        print("\nUsuários cadastrados:")
+        for email, nome in usuarios.items():
+            print(f"Nome: {nome}, Email: {email}")
+    else:
+        print("Nenhum usuário cadastrado.")
+
+def buscar_usuario(usuarios):
+    """Busca um usuário pelo email."""
+    email = input("Digite o email do usuário: ")
+    if email in usuarios:
+        print(f"Usuário encontrado: Nome: {usuarios[email]}")
+    else:
+        print("Usuário não encontrado.")
+
+def main():
+    """Função principal que controla o fluxo do sistema."""
+    usuarios = {}
+    while True:
+        exibir_menu()
+        opcao = input("Escolha uma opção: ")
+        if opcao == "1":
+            cadastrar_usuario(usuarios)
+        elif opcao == "2":
+            exibir_usuarios(usuarios)
+        elif opcao == "3":
+            buscar_usuario(usuarios)
+        elif opcao == "4":
+            print("Saindo do sistema...")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+# Executa o sistema
+main()
